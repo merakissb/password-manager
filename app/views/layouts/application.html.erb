@@ -24,14 +24,14 @@
       <%= render "shared/navbar" %>
     <% end %>
 
-  <!-- Mensajes Flash -->
-  <div data-controller="flash" class="flash-container">
-    <% flash.each do |type, message| %>
-      <div class="alert alert-<%= type == 'notice' ? 'success' : 'danger' %> alert-dismissible fade show" role="alert" data-flash-target="flash">
-        <%= message %>
-      </div>
-    <% end %>
-  </div>
+    <!-- Mensajes Flash -->
+    <div data-controller="flash" class="flash-container">
+      <% flash.each do |type, message| %>
+        <div class="alert alert-<%= type == 'notice' ? 'success' : 'danger' %> alert-dismissible fade show" role="alert" data-flash-target="flash">
+          <%= message %>
+        </div>
+      <% end %>
+    </div>
 
     <%= yield %>
 
