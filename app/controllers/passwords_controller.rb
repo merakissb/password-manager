@@ -17,7 +17,7 @@ class PasswordsController < ApplicationController
   def create
     @password = current_user.passwords.build(password_params)
     if @password.save
-      redirect_to @password, notice: "Password was successfully created."
+      redirect_to passwords_path, notice: "Password was successfully created."
     else
       render :new
     end

@@ -3,7 +3,7 @@
   <head>
     <title><%= content_for(:title) || "Vertical Passmgmt" %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -19,13 +19,24 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body class="">
+  <body>
     <% if user_signed_in? %>
       <%= render "shared/navbar" %>
-      <% end %>
-    <%= yield %>
-  </body>
+    <% end %>
 
-  <script src="https://kit.fontawesome.com/01cce2f544.js" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  <!-- Mensajes Flash -->
+  <div data-controller="flash" class="flash-container">
+    <% flash.each do |type, message| %>
+      <div class="alert alert-<%= type == 'notice' ? 'success' : 'danger' %> alert-dismissible fade show" role="alert" data-flash-target="flash">
+        <%= message %>
+      </div>
+    <% end %>
+  </div>
+
+    <%= yield %>
+
+    <script src="https://kit.fontawesome.com/01cce2f544.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+  </body>
 </html>

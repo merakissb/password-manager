@@ -36,3 +36,20 @@
   background-color: transparent;
   border: 0px
 }
+
+
+.flash-container {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1050;
+  width: auto;
+  max-width: 400px; /* Ajusta el ancho máximo según tus necesidades */
+  pointer-events: none; /* Esto permite que los elementos detrás sigan siendo clicables */
+}
+
+.alert {
+  pointer-events: auto; /* Esto asegura que los botones dentro de las alertas sigan siendo interactivos */
+  margin-bottom: 10px;
+}
