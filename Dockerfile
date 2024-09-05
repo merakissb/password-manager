@@ -47,7 +47,7 @@ RUN yarn install --frozen-lockfile
 COPY . .
 
 # Precompile assets for production
-RUN RAILS_MASTER_KEY="37a74027fb02b5c7580fe1b49451b676" ./bin/rails assets:precompile
+RUN SECRET_KEY_BASE_DUMMY=1 ./bin/rails assets:precompile
 
 # Verify assets are present
 RUN ls -al /rails/public/assets
