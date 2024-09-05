@@ -81,6 +81,6 @@ test:
 production:
   <<: *default
   url: <%= ENV["DATABASE_URL"] %>
-  # database: vertical_passmgmt_production
-  # username: vertical_passmgmt
-  # password: <%= ENV["VERTICAL_PASSMGMT_DATABASE_PASSWORD"] %>
+  database: vertical_passmgmt_production
+  username: vertical_passmgmt
+  password: <%= ENV["VERTICAL_PASSMGMT_DATABASE_PASSWORD"] %>
