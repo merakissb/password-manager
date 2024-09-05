@@ -29,9 +29,17 @@ class PasswordsController < ApplicationController
 
   def update
     if @password.update(password_params)
-      redirect_to @password, notice: "Password was successfully updated."
+      if request.format.json?
+        render json: { status: "success", password: @password }, status: :ok
+      else
+        redirect_to @password, notice: "Password was successfully updated."
+      end
     else
-      render :edit
+      if request.format.json?
+        render json: { errors: @password.errors.full_messages }, status: :unprocessable_entity
+      else
+        render :edit
+      end
     end
   end
 
