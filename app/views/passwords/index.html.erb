@@ -1,0 +1,49 @@
+<div class="table-responsive mt-5">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Contraseña</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @passwords.each do |password| %>
+        <tr>
+          <td><%= password.name %></td>
+          <td>
+            <div class="password-container">
+              <input type="password" id="password_<%= password.id %>" value="<%= password.key %>" readonly class="form-control">
+            </div>
+          </td>
+          <td>
+            <div class="btn-group" role="group" aria-label="Actions">
+              <button type="button" class="btn btn-secondary btn-sm show-password" onclick="togglePassword(<%= password.id %>)">
+                <i id="eye-icon_<%= password.id %>" class="fas fa-eye"></i>
+              </button>
+              <%= link_to 'Editar', edit_password_path(password), class: 'btn btn-warning btn-sm' %>
+              <%= link_to 'Eliminar', password_path(password), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-sm' %>
+            </div>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<%= javascript_tag do %>
+  function togglePassword(passwordId) {
+    var passwordField = document.getElementById('password_' + passwordId);
+    var eyeIcon = document.getElementById('eye-icon_' + passwordId);
+
+    if (passwordField.type === 'password') {
+      passwordField.type = 'text';
+      eyeIcon.classList.remove('fa-eye');
+      eyeIcon.classList.add('fa-eye-slash');
+    } else {
+      passwordField.type = 'password';
+      eyeIcon.classList.remove('fa-eye-slash');
+      eyeIcon.classList.add('fa-eye');
+    }
+  }
+<% end %>
