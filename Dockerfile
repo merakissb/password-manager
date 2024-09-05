@@ -49,6 +49,9 @@ COPY . .
 # Precompile assets for production
 RUN SECRET_KEY_BASE_DUMMY=1 ./bin/rails assets:precompile
 
+# Verify assets are present
+RUN ls -al /rails/public/assets
+
 # Precompiling bootsnap code for faster boot times
 RUN bundle exec bootsnap precompile app/ lib/
 
